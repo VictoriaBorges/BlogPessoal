@@ -38,7 +38,7 @@ public class UsuarioControllerTest {
 
 		usuarioRepository.deleteAll();
 
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
+		usuarioService.cadastrarUsuario(new Usuario(null, 
 			"Root", "root@root.com", "rootroot", "-"));
 
 	}
@@ -47,7 +47,7 @@ public class UsuarioControllerTest {
 	@DisplayName("Cadastrar Um Usuário")
 	public void deveCriarUmUsuario() {
 
-		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(0L, 
+		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(null, 
 			"Paulo Antunes", "paulo_antunes@email.com.br", "13465278", "-"));
 
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate
@@ -61,10 +61,10 @@ public class UsuarioControllerTest {
 	@DisplayName("Não deve permitir duplicação do Usuário")
 	public void naoDeveDuplicarUsuario() {
 
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
+		usuarioService.cadastrarUsuario(new Usuario(null, 
 			"Maria da Silva", "maria_silva@email.com.br", "13465278", "-"));
 
-		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(0L, 
+		HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(null, 
 			"Maria da Silva", "maria_silva@email.com.br", "13465278", "-"));
 
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate
@@ -77,7 +77,7 @@ public class UsuarioControllerTest {
 	@DisplayName("Atualizar um Usuário")
 	public void deveAtualizarUmUsuario() {
 
-		Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(new Usuario(0L, 
+		Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(new Usuario(null, 
 			"Juliana Andrews", "juliana_andrews@email.com.br", "juliana123", "-"));
 
 		Usuario usuarioUpdate = new Usuario(usuarioCadastrado.get().getId(), 
@@ -97,10 +97,10 @@ public class UsuarioControllerTest {
 	@DisplayName("Listar todos os Usuários")
 	public void deveMostrarTodosUsuarios() {
 
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
+		usuarioService.cadastrarUsuario(new Usuario(null, 
 			"Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123", "-"));
 		
-		usuarioService.cadastrarUsuario(new Usuario(0L, 
+		usuarioService.cadastrarUsuario(new Usuario(null, 
 			"Ricardo Marques", "ricardo_marques@email.com.br", "ricardo123", "-"));
 
 		ResponseEntity<String> resposta = testRestTemplate
